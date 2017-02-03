@@ -1,0 +1,14 @@
+import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
+import 'rxjs/add/operator/map';
+
+@Injectable()
+export class Task {
+
+  constructor(public http: Http) {
+    console.log('Hello Task Provider');
+  }
+
+
+   // firebase.initializeApp(config);
+}

@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Ionic2Do
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="addItem()">Add Item</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item-sliding *ngFor="let task of tasks2 | async" #slidingItem
+                      (ionSwipe)="removeTask(slidingItem, task)">
+      <ion-item [ngClass]="{taskDone: task.status == TaskStatus.DONE}">
+        {{task.title}}
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button icon-only (click)="markAsDone(slidingItem, task)" color="secondary">
+          <ion-icon name="checkmark"></ion-icon>
+        </button>
+        <button ion-button icon-only expandable (click)="removeTask(slidingItem, task)" color="danger">
+          <ion-icon name="trash"></ion-icon>
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

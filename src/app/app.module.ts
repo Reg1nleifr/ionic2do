@@ -1,7 +1,7 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+import { TasksPage } from '../pages/tasks/home';
 import {AngularFireModule} from 'angularfire2';
 
 // Initialize Firebase
@@ -16,7 +16,7 @@ export const firebaseConfig = {
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    TasksPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -25,7 +25,7 @@ export const firebaseConfig = {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    TasksPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

@@ -11,14 +11,17 @@
 
 <ion-content>
   <ion-list>
-    <ion-item-sliding *ngFor="let task of tasks2 | async" #slidingItem
+    <ion-item-sliding *ngFor="let task of tasks | async" #slidingItem
                       (ionSwipe)="removeTask(slidingItem, task)">
       <ion-item [ngClass]="{taskDone: task.status == TaskStatus.DONE}">
         {{task.title}}
       </ion-item>
       <ion-item-options side="right">
-        <button ion-button icon-only (click)="markAsDone(slidingItem, task)" color="secondary">
+        <button *ngIf="task.status != TaskStatus.DONE" ion-button icon-only (click)="markAsDone(slidingItem, task)" color="secondary">
           <ion-icon name="checkmark"></ion-icon>
+        </button>
+        <button *ngIf="task.status == TaskStatus.DONE" ion-button icon-only (click)="unmarkAsDone(slidingItem, task)">
+          <ion-icon name="refresh"></ion-icon>
         </button>
         <button ion-button icon-only expandable (click)="removeTask(slidingItem, task)" color="danger">
           <ion-icon name="trash"></ion-icon>

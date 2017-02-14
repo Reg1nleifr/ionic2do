@@ -19,17 +19,17 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       let that = this;
 
-      offlineStore.getData('user').then(user => {
-          if(user) {
-            this.nav.setRoot(TasksPage);
-            Splashscreen.hide();
-          }
-          else {
-            this.nav.setRoot(LoginPage);
-            Splashscreen.hide();
-          }
-        }
-      );
+      // offlineStore.getData('user').then(user => {
+      //     if(user) {
+      //       this.nav.setRoot(TasksPage);
+      //       Splashscreen.hide();
+      //     }
+      //     else {
+      //       this.nav.setRoot(LoginPage);
+      //       Splashscreen.hide();
+      //     }
+      //   }
+      // );
 
 
       // NativeStorage.getItem('user')

@@ -9,7 +9,7 @@
     "ionic:build": "ionic-app-scripts build",
     "ionic:serve": "ionic-app-scripts serve",
     "ionic:serve:lab": "ionic-app-scripts serve --lab",
-    "ionic:emulate:ios":"ionic emulate ios"
+    "ionic:emulate:ios": "ionic emulate ios"
   },
   "dependencies": {
     "@angular/common": "2.2.1",
@@ -27,6 +27,7 @@
     "ionic-angular": "2.0.0",
     "ionic-native": "^2.4.1",
     "ionicons": "3.0.0",
+    "pouchdb": "^6.1.2",
     "rxjs": "^5.0.1",
     "sw-toolbox": "3.4.0",
     "zone.js": "0.6.26"

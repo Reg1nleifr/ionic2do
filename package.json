@@ -8,7 +8,8 @@
     "build": "ionic-app-scripts build",
     "ionic:build": "ionic-app-scripts build",
     "ionic:serve": "ionic-app-scripts serve",
-    "ionic:serve:lab": "ionic-app-scripts serve --lab"
+    "ionic:serve:lab": "ionic-app-scripts serve --lab",
+    "ionic:emulate:ios":"ionic emulate ios"
   },
   "dependencies": {
     "@angular/common": "2.2.1",

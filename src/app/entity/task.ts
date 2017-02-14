@@ -5,7 +5,9 @@ export class Task {
   title: string;
   status: TaskStatus;
   due: Date;
+  dueTime: string;
   createDate: Date;
+  repeat: boolean;
 
   constructor(title: string, status: TaskStatus) {
     this.title = title;

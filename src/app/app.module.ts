@@ -1,32 +1,39 @@
-import { NgModule, ErrorHandler } from '@angular/core';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
-import { MyApp } from './app.component';
-import { TasksPage } from '../pages/tasks/home';
+import {NgModule, ErrorHandler} from '@angular/core';
+import {IonicApp, IonicModule, IonicErrorHandler} from 'ionic-angular';
+import {MyApp} from './app.component';
+import {TasksPage} from '../pages/tasks/tasks';
 import {AngularFireModule} from 'angularfire2';
-
-// Initialize Firebase
-export const firebaseConfig = {
-  apiKey: "AIzaSyCyFf-QpYFGBUrtdHFsy15LZH50lgg68VI",
-  authDomain: "ionic2do-17d4d.firebaseapp.com",
-  databaseURL: "https://ionic2do-17d4d.firebaseio.com",
-  storageBucket: "ionic2do-17d4d.appspot.com",
-  messagingSenderId: "791578804923"
-};
+import {AngularFireLoginService, firebaseConfig} from '../providers/login-providers/angular-fire-login';
+import {LoginPage} from '../pages/login/login';
+import {AddTaskPage} from '../pages/add-task/add-task';
+import {FireTaskService} from '../providers/task.service';
 
 @NgModule({
-  declarations: [
-    MyApp,
-    TasksPage
-  ],
   imports: [
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig)
   ],
-  bootstrap: [IonicApp],
+  declarations: [
+    MyApp,
+    TasksPage,
+    LoginPage,
+    AddTaskPage
+  ],
+  bootstrap: [
+    IonicApp
+  ],
   entryComponents: [
     MyApp,
-    TasksPage
+    TasksPage,
+    LoginPage,
+    AddTaskPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AngularFireLoginService,
+    FireTaskService
+  ]
 })
-export class AppModule {}
+
+export class AppModule {
+}

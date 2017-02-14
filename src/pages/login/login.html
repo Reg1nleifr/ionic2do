@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Login</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <ion-card-header>
+      Login Providers
+    </ion-card-header>
+    <ion-list>
+      <button ion-item (click)="onGoogleLogin()">
+        <ion-icon name="login" item-left></ion-icon>
+        Google
+      </button>
+
+      <button ion-button block color="danger" (click)="doGoogleLogin()">Google Login</button>
+    </ion-list>
+  </ion-card>
+</ion-content>

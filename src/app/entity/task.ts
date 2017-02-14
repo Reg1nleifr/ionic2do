@@ -6,8 +6,8 @@ export class Task {
   status: TaskStatus;
   due: Date;
   dueTime: string;
-  createDate: Date;
   repeat: boolean;
+  repeatInterval: number;
 
   constructor(title: string, status: TaskStatus) {
     this.title = title;

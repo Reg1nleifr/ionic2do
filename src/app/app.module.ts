@@ -6,8 +6,8 @@ import {AngularFireModule} from 'angularfire2';
 import {AngularFireLoginService, firebaseConfig} from '../providers/login-providers/angular-fire-login';
 import {LoginPage} from '../pages/login/login';
 import {AddTaskPage} from '../pages/add-task/add-task';
-import {FireTaskService} from '../providers/task.service';
-import {OfflineTaskService} from '../providers/offline-task.service';
+import {FireTaskService} from '../providers/fire-task.service';
+import {TaskService} from '../providers/task.service';
 
 @NgModule({
   imports: [
@@ -33,7 +33,7 @@ import {OfflineTaskService} from '../providers/offline-task.service';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AngularFireLoginService,
     FireTaskService,
-    OfflineTaskService
+    TaskService
   ]
 })
 

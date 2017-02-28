@@ -9,7 +9,7 @@ export class FireTaskService {
 
   constructor(private _angularFire: AngularFire) {
     console.log('Hello Task Provider');
-    this.tasks = _angularFire.database.list('/tasks');
+    this.tasks = _angularFire.database.list('/fireTasks');
   }
 
   get fireTasks(): FirebaseListObservable<Task[]> {

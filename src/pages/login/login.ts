@@ -3,7 +3,6 @@ import {NavController, NavParams, LoadingController} from 'ionic-angular';
 import {AngularFireLoginService} from '../../providers/login-providers/angular-fire-login';
 import {TasksPage} from '../tasks/tasks';
 import {GooglePlus, NativeStorage} from 'ionic-native';
-import {OfflineTaskService} from '../../providers/offline-task.service';
 
 @Component({
   selector: 'page-login',
@@ -11,13 +10,29 @@ import {OfflineTaskService} from '../../providers/offline-task.service';
 })
 export class LoginPage {
 
+  private username: string;
+  private password: string;
+
   constructor(public navCtrl: NavController,
-              public navParams: NavParams,
               public loadingCtrl: LoadingController,
-              private _loginService: AngularFireLoginService,
-              private offlineStorage: OfflineTaskService) {
+              private _loginService: AngularFireLoginService) {
 
   }
+
+  login() {
+    //this.navCtrl.push(TasksPage, { offline: true });
+    console.log(this.password);
+
+    this.navCtrl.push(TasksPage, {offline: true});
+  }
+
+
+
+
+
+
+
+
 
   onGoogleLogin() {
     this._loginService.loginWithGoogle().then((user) => {
@@ -26,7 +41,7 @@ export class LoginPage {
       console.log(user);
 
       // this.offlineStorage.save(user, 'user');
-      this.navCtrl.setRoot(TasksPage);
+      this.navCtrl.push(TasksPage, {offline: false});
     })
   }
 
@@ -50,7 +65,7 @@ export class LoginPage {
           picture: user.imageUrl
         })
           .then(function(){
-            nav.push(TasksPage);
+            nav.push(TasksPage, {offline: false});
           }, function (error) {
             console.log(error);
           });

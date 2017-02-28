@@ -1,13 +1,12 @@
-import { Component } from '@angular/core';
-import {NavController, ItemSliding, ModalController} from 'ionic-angular';
-import {TaskStatus} from '../../app/enum/TaskStatus';
-import {Task} from '../../app/entity/task';
-import {AngularFire, FirebaseListObservable} from 'angularfire2';
-import {Dialogs} from 'ionic-native';
-import {AngularFireLoginService} from '../../providers/login-providers/angular-fire-login';
-import {LoginPage} from '../login/login';
+import {ItemSliding, ModalController, NavController, NavParams} from 'ionic-angular';
+
 import {AddTaskPage} from '../add-task/add-task';
-import {FireTaskService} from '../../providers/task.service';
+import {Component} from '@angular/core';
+import {FireTaskService} from '../../providers/fire-task.service';
+import {FirebaseListObservable} from 'angularfire2';
+import {TaskService} from '../../providers/task.service';
+import {Task} from '../../app/entity/task';
+import {TaskStatus} from '../../app/enum/TaskStatus';
 
 @Component({
   selector: 'page-task',
@@ -16,44 +15,45 @@ import {FireTaskService} from '../../providers/task.service';
 export class TasksPage {
 
   TaskStatus = TaskStatus;
-  tasks: FirebaseListObservable<Task[]>;
+  tasks: Promise<Task[]>;
+  loading: boolean = true;
+
   constructor(public navCtrl: NavController,
               public modalCtrl: ModalController,
-              public taskService: FireTaskService) {
+              public taskService: TaskService,
+              public params: NavParams) {
 
-    this.tasks = taskService.fireTasks; // Geht das?
-    // this.tasks = angularFire.database.list('/tasks');
+    this.loading = true;
+    this.tasks = this.taskService.getTodos(); //Holma uns de Tasks pls
+    this.loading = false;
   }
 
   addItem(): void {
-
-  // Dialogs.prompt('Add a task', 'Ionic2Do', ['Ok', 'Cancel'], '')
-  //   .then(
-  //     theResult => {
-  //       if (theResult.buttonIndex == 1 && theResult.input1 !== '') {
-  //         this.tasks.push({ title: theResult.input1, status: TaskStatus.TODO });
-  //       }
-  //     }
-  //   );
-
     let modal = this.modalCtrl.create(AddTaskPage);
     modal.present();
+  }
 
+  edit(slidingItem: ItemSliding, task: Task) {
+    // this.removeTask(slidingItem, task);
+    //this.taskService.updateTodo()
+    //this.addItem();
+    alert('To be implemented!');
   }
 
   markAsDone(slidingItem: ItemSliding, task: Task) {
-    this.tasks.update(task.$key, { status: TaskStatus.DONE });
+    task.status = TaskStatus.DONE;
+    this.taskService.updateTodo(task);
     slidingItem.close();
   }
 
   unmarkAsDone(slidingItem: ItemSliding, task: Task) {
-    this.tasks.update(task.$key, { status: TaskStatus.TODO });
+    task.status = TaskStatus.TODO;
+    this.taskService.updateTodo(task);
     slidingItem.close();
   }
 
   removeTask(slidingItem: ItemSliding, task: Task) {
-    this.tasks.remove(task.$key);
+    this.taskService.deleteTodo(task);
     slidingItem.close();
   }
-
 }

@@ -1,7 +1,10 @@
 import {TaskStatus} from '../enum/TaskStatus';
 
 export class Task {
-  $key: any;
+  /* Needed for Storage */
+  _id: any;
+  _rev: any;
+  /* Fields */
   title: string;
   status: TaskStatus;
   due: Date;

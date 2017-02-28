@@ -1,8 +1,7 @@
 import {Component, ViewChild} from '@angular/core';
 import {Platform, Nav} from 'ionic-angular';
-import {StatusBar, Splashscreen, NativeStorage} from 'ionic-native';
+import {StatusBar, Splashscreen} from 'ionic-native';
 import {LoginPage} from '../pages/login/login';
-import {TasksPage} from '../pages/tasks/tasks';
 import {OfflineTaskService} from '../providers/offline-task.service';
 
 @Component({
@@ -13,24 +12,11 @@ export class MyApp {
   @ViewChild(Nav) nav;
   // @ViewChild('myNav') nav: NavController
 
-  constructor(platform: Platform, private offlineStore: OfflineTaskService) {
+  constructor(platform: Platform) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       let that = this;
-
-      // offlineStore.getData('user').then(user => {
-      //     if(user) {
-      //       this.nav.setRoot(TasksPage);
-      //       Splashscreen.hide();
-      //     }
-      //     else {
-      //       this.nav.setRoot(LoginPage);
-      //       Splashscreen.hide();
-      //     }
-      //   }
-      // );
-
 
       // NativeStorage.getItem('user')
       //   .then(function (data) {

@@ -30,12 +30,12 @@ export class TaskService {
 
   }
 
-  setTaskStatus(_id: any, status: TaskStatus) {
-    let me = this.db.get(_id);
-    me.status = status;
-    console.log(me[0]);
-    this.db.put(me);
-  }
+  // setTaskStatus(_id: any, status: TaskStatus) {
+  //   let me = this.db.get(_id);
+  //   me.status = status;
+  //   console.log(me);
+  //   this.db.put(me);
+  // }
 
   getTodos(): Promise<Task> {
 

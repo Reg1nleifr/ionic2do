@@ -20,6 +20,9 @@
         <button *ngIf="task.status != TaskStatus.DONE" ion-button icon-only (click)="markAsDone(slidingItem, task)" color="secondary">
           <ion-icon name="checkmark"></ion-icon>
         </button>
+        <button *ngIf="task.status != TaskStatus.DONE" ion-button icon-only (click)="edit(slidingItem, task)">
+          <ion-icon name="create"></ion-icon>
+        </button>
         <button *ngIf="task.status == TaskStatus.DONE" ion-button icon-only (click)="unmarkAsDone(slidingItem, task)">
           <ion-icon name="refresh"></ion-icon>
         </button>

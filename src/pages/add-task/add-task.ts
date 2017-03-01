@@ -1,10 +1,8 @@
-import {NavController, NavParams, ViewController} from 'ionic-angular';
-
 import {Component} from '@angular/core';
-import {FireTaskService} from '../../providers/fire-task.service';
-import {TaskService} from '../../providers/task.service';
 import {Task} from '../../app/entity/task'
+import {TaskService} from '../../providers/task.service';
 import {TaskStatus} from '../../app/enum/TaskStatus';
+import {ViewController} from 'ionic-angular';
 
 @Component({
   selector: 'page-add-task',
@@ -29,13 +27,13 @@ export class AddTaskPage {
   }
 
   onDismiss() {
-    if (this.task.title !== '') {
-      this.taskService.createTodo(this.task);
-    }
     this.viewCtrl.dismiss();
   }
 
-  onCancel() {
+  onSave() {
+    if (this.task.title !== '') {
+      this.taskService.createTodo(this.task);
+    }
     this.viewCtrl.dismiss();
   }
 }

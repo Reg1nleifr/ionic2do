@@ -4,6 +4,7 @@ import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
 import {AddTaskPage} from '../pages/add-task/add-task';
 import {LoginPage} from '../pages/login/login';
 import {MyApp} from './app.component';
+import {SignupPage} from '../pages/signup/signup';
 import {TaskService} from '../providers/task.service';
 import {TasksPage} from '../pages/tasks/tasks';
 
@@ -13,8 +14,9 @@ import {TasksPage} from '../pages/tasks/tasks';
   ],
   declarations: [
     MyApp,
-    TasksPage,
+    SignupPage,
     LoginPage,
+    TasksPage,
     AddTaskPage
   ],
   bootstrap: [
@@ -22,8 +24,9 @@ import {TasksPage} from '../pages/tasks/tasks';
   ],
   entryComponents: [
     MyApp,
-    TasksPage,
+    SignupPage,
     LoginPage,
+    TasksPage,
     AddTaskPage
   ],
   providers: [

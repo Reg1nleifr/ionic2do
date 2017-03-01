@@ -2,36 +2,39 @@ import { Headers, Http } from '@angular/http';
 
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { SignupPage } from '../signup/signup';
 import { TaskService } from '../../providers/task.service';
-import { TasksPage } from '../tasks/tasks';
+import {TasksPage} from '../tasks/tasks';
 
 @Component({
-  selector: 'page-login',
-  templateUrl: 'login.html'
+  selector: 'page-signup',
+  templateUrl: 'signup.html'
 })
-export class LoginPage {
+export class SignupPage {
 
+  name: string;
   username: string;
+  email: string;
   password: string;
+  confirmPassword: string;
 
   constructor(public nav: NavController, public http: Http, public taskService: TaskService) {
 
   }
 
-  login() {
+  register() {
 
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
-    let credentials = {
+    let user = {
+      name: this.name,
       username: this.username,
-      password: this.password
+      email: this.email,
+      password: this.password,
+      confirmPassword: this.confirmPassword
     };
 
-    console.log(this.password); //See if its clear! _>
-
-    this.http.post(this.taskService.loginBaseUrl+'/auth/login', JSON.stringify(credentials), { headers: headers })
+    this.http.post(this.taskService.loginBaseUrl+'auth/register', JSON.stringify(user), { headers: headers })
       .subscribe(res => {
         this.taskService.init(res.json());
         this.nav.setRoot(TasksPage);
@@ -39,10 +42,6 @@ export class LoginPage {
         console.log(err);
       });
 
-  }
-
-  launchSignup() {
-    this.nav.push(SignupPage);
   }
 
 }

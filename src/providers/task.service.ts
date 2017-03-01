@@ -5,30 +5,55 @@ import * as PouchDB from 'pouchdb';
 
 import {Injectable} from '@angular/core';
 import {Task} from '../app/entity/task';
-import { TaskStatus } from '../app/enum/TaskStatus';
 
 @Injectable()
 export class TaskService {
+
+  // TODO: Wäre ein LoginService schön?
+  loginBaseUrl: string = 'http://192.168.0.20:3000/';
+  remoteBaseUrl: string = 'http://192.168.0.20:5984/';
 
   data: any;
   db: any;
   remote: any;
 
   constructor() {
-    this.db = new PouchDB('doit'); // Shouldnt I also create another for users?
+  }
 
-    // TODO: Forwarding auf Raspberry Pi - Applikationsserver (Der mitn Kodi!) - done!
-    this.remote = 'http://192.168.0.20:5984/doit';
+  init(details) {
+
+    this.db = new PouchDB('doit');
+
+    this.remote = details.userDBs.supertest;
 
     let options = {
       live: true,
       retry: true,
       continuous: true
     };
-    // TODO: Was tun wenn nicht erreichbar?
+
+    //Was tun wenn nicht erreichbar?
     this.db.sync(this.remote, options);
 
+    console.log(this.db);
+
   }
+
+  /**
+   *
+   * Logout
+   *
+   * @memberOf TaskService
+   */
+  logout(){
+
+    this.data = null;
+
+    this.db.destroy().then(() => {
+      console.log("database removed");
+    });
+  }
+
 
   // setTaskStatus(_id: any, status: TaskStatus) {
   //   let me = this.db.get(_id);
@@ -54,7 +79,6 @@ export class TaskService {
         this.data = [];
 
         let docs = result.rows.map((row) => {
-          // Hier is nix drin :(
           this.data.push(row.doc);
           console.log(this.data);
         });

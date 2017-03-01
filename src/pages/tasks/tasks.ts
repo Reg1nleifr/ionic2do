@@ -1,12 +1,11 @@
-import {ItemSliding, ModalController, NavController, NavParams} from 'ionic-angular';
+import { ItemSliding, ModalController, NavController, NavParams } from 'ionic-angular';
 
-import {AddTaskPage} from '../add-task/add-task';
-import {Component} from '@angular/core';
-import {FireTaskService} from '../../providers/fire-task.service';
-import {FirebaseListObservable} from 'angularfire2';
-import {TaskService} from '../../providers/task.service';
-import {Task} from '../../app/entity/task';
-import {TaskStatus} from '../../app/enum/TaskStatus';
+import { AddTaskPage } from '../add-task/add-task';
+import { Component } from '@angular/core';
+import { LoginPage } from '../login/login';
+import { Task } from '../../app/entity/task';
+import { TaskService } from '../../providers/task.service';
+import { TaskStatus } from '../../app/enum/TaskStatus';
 
 @Component({
   selector: 'page-task',
@@ -19,9 +18,9 @@ export class TasksPage {
   loading: boolean = true;
 
   constructor(public navCtrl: NavController,
-              public modalCtrl: ModalController,
-              public taskService: TaskService,
-              public params: NavParams) {
+    public modalCtrl: ModalController,
+    public taskService: TaskService,
+    public params: NavParams) {
 
     this.loading = true;
     this.tasks = this.taskService.getTodos(); //Holma uns de Tasks pls
@@ -55,5 +54,11 @@ export class TasksPage {
   removeTask(slidingItem: ItemSliding, task: Task) {
     this.taskService.deleteTodo(task);
     slidingItem.close();
+  }
+
+  logout() {
+    this.taskService.logout();
+    this.tasks = null;
+    this.navCtrl.setRoot(LoginPage);
   }
 }

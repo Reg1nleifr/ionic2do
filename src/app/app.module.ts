@@ -1,18 +1,15 @@
-import {NgModule, ErrorHandler} from '@angular/core';
-import {IonicApp, IonicModule, IonicErrorHandler} from 'ionic-angular';
-import {MyApp} from './app.component';
-import {TasksPage} from '../pages/tasks/tasks';
-import {AngularFireModule} from 'angularfire2';
-import {AngularFireLoginService, firebaseConfig} from '../providers/login-providers/angular-fire-login';
-import {LoginPage} from '../pages/login/login';
+import {ErrorHandler, NgModule} from '@angular/core';
+import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
+
 import {AddTaskPage} from '../pages/add-task/add-task';
-import {FireTaskService} from '../providers/fire-task.service';
+import {LoginPage} from '../pages/login/login';
+import {MyApp} from './app.component';
 import {TaskService} from '../providers/task.service';
+import {TasksPage} from '../pages/tasks/tasks';
 
 @NgModule({
   imports: [
-    IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(firebaseConfig)
+    IonicModule.forRoot(MyApp)
   ],
   declarations: [
     MyApp,
@@ -31,8 +28,6 @@ import {TaskService} from '../providers/task.service';
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AngularFireLoginService,
-    FireTaskService,
     TaskService
   ]
 })

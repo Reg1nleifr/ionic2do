@@ -3,6 +3,7 @@
   "author": "Ionic Framework",
   "homepage": "http://ionicframework.com/",
   "private": true,
+  "version": "0.0.1.Beta",
   "scripts": {
     "clean": "ionic-app-scripts clean",
     "build": "ionic-app-scripts build",
@@ -23,8 +24,6 @@
     "@angular/platform-server": "2.2.1",
     "@ionic/storage": "1.1.7",
     "@types/pouchdb": "5.4.28",
-    "angularfire2": "^2.0.0-beta.7",
-    "firebase": "^3.6.8",
     "ionic-angular": "2.0.0",
     "ionic-native": "^2.4.1",
     "ionicons": "3.0.0",

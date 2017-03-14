@@ -19,7 +19,6 @@ export class AddTaskPage {
     this.task.due = new Date();
     this.taskDue = this.task.due.toISOString();
     this.task.dueTime = this.task.due.toLocaleTimeString();
-    console.log(this.task.dueTime)
   }
 
   ionViewDidLoad() {

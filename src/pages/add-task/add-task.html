@@ -6,7 +6,7 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title>Add Task</ion-title>
+    <ion-title>Add PanDo Task</ion-title>
     <ion-buttons start>
       <button ion-button (click)="onDismiss()">
         <span ion-text color="primary" showWhen="ios">Back</span>
@@ -19,7 +19,7 @@
 <ion-content padding>
   <ion-list>
     <ion-item>
-      <ion-label floating>2Do Name</ion-label>
+      <ion-label fixed>PanDo Task</ion-label>
       <ion-input [(ngModel)]="task.title" ></ion-input>
     </ion-item>
     <ion-item>
@@ -41,5 +41,5 @@
     <!-- SuperTask -->
     <!-- Comments -->
   </ion-list>
-  <button (click)="onSave" ion-button full>Save</button>
+  <button (click)="onSave()" ion-button full>Save</button>
 </ion-content>

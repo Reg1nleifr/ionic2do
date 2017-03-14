@@ -10,8 +10,14 @@ import {Task} from '../app/entity/task';
 export class TaskService {
 
   // TODO: Wäre ein LoginService schön?
-  loginBaseUrl: string = 'http://192.168.0.20:3000/';
-  remoteBaseUrl: string = 'http://192.168.0.20:5984/';
+  // TODO: https:// -> Wie kann ich das über ssl senden?
+  // loginUrl: string = 'http://192.168.0.20:3000/auth/login';
+  // registerUrl: string = 'http://192.168.0.20:3000/auth/register';
+  // remoteDBUrl: string = 'http://192.168.0.20:5984';
+
+  loginUrl: string = 'http://localhost:3000/auth/login';
+  registerUrl: string = 'http://localhost:3000/auth/register';
+  remoteDBUrl: string = 'http://localhost:5984';
 
   data: any;
   db: any;
@@ -22,9 +28,9 @@ export class TaskService {
 
   init(details) {
 
-    this.db = new PouchDB('doit');
+    this.db = new PouchDB('pandodb');
 
-    this.remote = details.userDBs.supertest;
+    this.remote = details.userDBs.pando;
 
     let options = {
       live: true,
@@ -34,9 +40,6 @@ export class TaskService {
 
     //Was tun wenn nicht erreichbar?
     this.db.sync(this.remote, options);
-
-    console.log(this.db);
-
   }
 
   /**
